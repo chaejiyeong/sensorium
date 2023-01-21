@@ -67,6 +67,7 @@ for row in data2:  # 2
 
 cancer.data = np.concatenate([cancer.data, cancer.extraData], axis=1)
 cancer.data2 = np.concatenate([cancer.data2, cancer.extraData2], axis=1)
+cancer.data = np.array(cancer.data, np.float)
 
 f.close
 f2.close
@@ -91,7 +92,7 @@ params = {'n_neighbors': [5, 15, 30, 100], 'weights':  ['uniform', 'distance'],
           'algorithm': ['auto', 'ball_tree', 'kd_tree', 'brute']}
 acc = []
 # 훈련/테스트 세트로 나누기 (random_state 바꿔서)
-for i in range(100):
+for i in range(1):
     X_train, X_test, y_train, y_test = train_test_split(
         cancer.data, cancer.target, random_state=i)
     X_train2, X_test2, y_train2, y_test2 = train_test_split(
@@ -102,8 +103,8 @@ for i in range(100):
     gsknn.fit(X_train, y_train)
 
     scores_df = pd.DataFrame(gsknn.cv_results_)
-    scores_df = scores_df[["params", "mean_test_score", "rank_test_score"]]
-    # pd.set_option('display.max_colwidth', -1)
+    scores_df = scores_df[["params", "mean_test_score"]]
+    pd.set_option('display.max_colwidth', None)
     acc.append(i)
     acc.append(scores_df)
     # knn = KNeighborsClassifier(

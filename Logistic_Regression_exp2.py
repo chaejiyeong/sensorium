@@ -67,6 +67,7 @@ for row in data2:  # 2
 
 cancer.data = np.concatenate([cancer.data, cancer.extraData], axis=1)
 cancer.data2 = np.concatenate([cancer.data2, cancer.extraData2], axis=1)
+cancer.data = np.array(cancer.data, np.float)
 
 f.close
 f2.close
@@ -109,8 +110,8 @@ for i in range(100):
     # y_hat = Logreg.predict(X_test2)
     # matrix = metrics.confusion_matrix(y_test, y_hat)
     scores_df = pd.DataFrame(gslogreg.cv_results_)
-    scores_df = scores_df[["params", "mean_test_score", "rank_test_score"]]
-    # pd.set_option('display.max_colwidth', -1)
+    scores_df = scores_df[["params", "mean_test_score"]]
+    pd.set_option('display.max_colwidth', None)
     acc.append(i)
     acc.append(scores_df)
 """
