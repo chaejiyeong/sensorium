@@ -17,7 +17,7 @@ import sys
 cancer = load_breast_cancer()
 
 f = open('계량기&ltype1 지운 형식.csv')  # # train, test 둘 다
-f2 = open('/home/jy/Desktop/엑셀 형식 - 계량기만.csv')
+f2 = open('엑셀 형식 - 계량기만.csv')
 data = csv.reader(f)
 data2 = csv.reader(f2)
 header = next(data)
