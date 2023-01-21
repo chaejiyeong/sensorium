@@ -13,8 +13,8 @@ from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_sc
 
 cancer = load_breast_cancer()
 
-f = open('/home/jy/Desktop/엑셀 형식 - 계량기만.csv')  # 1
-f2 = open('/home/jy/Desktop/계량기&ltype1 지운 형식.csv')  # 1
+f = open('엑셀 형식 - 계량기만.csv')  # # train, test 둘 다
+f2 = open('계량기&ltype1 지운 형식.csv')
 data = csv.reader(f)
 data2 = csv.reader(f2)
 header = next(data)
@@ -89,7 +89,6 @@ accuracy_False = 0
 params = {'n_neighbors': [5, 15, 30, 100], 'weights':  ['uniform', 'distance'],
           'algorithm': ['auto', 'ball_tree', 'kd_tree', 'brute']}
 acc = []
-
 # 훈련/테스트 세트로 나누기 (random_state 바꿔서)
 for i in range(100):
     X_train, X_test, y_train, y_test = train_test_split(
