@@ -92,7 +92,7 @@ params = {'n_neighbors': [5, 15, 30, 100], 'weights':  ['uniform', 'distance'],
           'algorithm': ['auto', 'ball_tree', 'kd_tree', 'brute']}
 acc = []
 # 훈련/테스트 세트로 나누기 (random_state 바꿔서)
-for i in range(1):
+for i in range(100):
     X_train, X_test, y_train, y_test = train_test_split(
         cancer.data, cancer.target, random_state=i)
     X_train2, X_test2, y_train2, y_test2 = train_test_split(
