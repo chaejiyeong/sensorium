@@ -16,8 +16,9 @@ https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestC
 Check Parameter list of SVM
 https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html
 
-# 2023 01 22 Sun, LSH
 # KNN
+
+# 2023 01 22 Sun, LSH
 params = {
     'n_neighbors': [5, 10, 20, 40],
     'weights': ['uniform', distance],
@@ -27,6 +28,8 @@ params = {
     }
 
 # MLP
+
+# 2023 01 22 Sun, LSH
 params = {
         'hidden_layer_sizes': [(50,), (100,), (200,), (400)],
         'activation': ['tanh', 'relu', 'logistic', 'identity'],
@@ -38,6 +41,8 @@ params = {
     }
 
 # GB
+
+# 2023 01 22 Sun, LSH
 params = {
     'loss': [‘log_loss’, ‘deviance’, ‘exponential’],
     'learning_rate': [0.1, 0.01],
@@ -49,6 +54,8 @@ params = {
     }
 
 # LogisticRegression
+
+# 2023 01 22 Sun, LSH
 params = {
     'penalty': ['l1', 'l2', 'elasticnet'],
     'C': [1.0, 0.5, 0.2], 
@@ -58,6 +65,8 @@ params = {
     }
 
 # RF
+
+# 2023 01 22 Sun, LSH
 params = {
     'n_estimators': [10, 50, 100],
     'criterion': ['gini', 'entropy', 'log_loss'],
@@ -66,6 +75,8 @@ params = {
     }
 
 # SVM
+
+# 2023 01 22 Sun, LSH
 params = {
     'C': [1.0, 0.5, 0.2], 
     'kernel': ['linear', 'poly', 'rbf', 'sigmoid', 'precomputed'],
