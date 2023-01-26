@@ -1,0 +1,3 @@
+,score,bootstrap,criterion,max_features,n_estimators
+0,0.6555824515339259,True,gini,,100
+1,0.6591194064786615,True,entropy,,100

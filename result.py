@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 
 def average(models, names, data, seeds):
+    np.set_printoptions(precision = 4)
     for model in models:
         for datum in data:
             result = dict()
@@ -42,15 +43,16 @@ def average(models, names, data, seeds):
                 value_dict = eval(key)
                 value_dict['score'] = value
                 result_csv = result_csv.append(value_dict, ignore_index= True)
-                
-            result_name = 'result/' + model + '_' + name + '_' + datum + '.csv'
-            result_csv.to_csv(result_name)
+            
+            if first == 1:
+                result_name = 'result/' + model + '_' + name + '_' + datum + '.csv'
+                result_csv.to_csv(result_name)
                 
                 
 models = ["KNN", "MLP", "DNN", "GB", "LR", "RF", "SVM"]
 # models = ["SVM"]
-names = ["0126"]
-data = ["02"]
+names = ["0126-3"]
+data = ["03"]
 seeds = 10
 
 average(models, names, data, seeds)
