@@ -54,5 +54,3 @@ models = ["KNN", "MLP", "DNN", "GB", "LR", "RF", "SVM"]
 names = ["0126-3"]
 data = ["03"]
 seeds = 10
-
-average(models, names, data, seeds)

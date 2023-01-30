@@ -8,11 +8,12 @@ import param_set
 # random_seed: 돌리는 횟수 (int)
 
 # ==================== Moderate Here! ================================
-name = ["0126-3"]
-data_list = ["03"]
-model_list = ["KNN", "MLP", "DNN", "GB", "LR", "RF", "SVM"]
+name = ["birth"]
+data_list = ["17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27"]
+model_list = ["KNN", "MLP", "DNN", "GB", "LR", "RF"]
+# "SVM " error!
 random_seed = 10
 
-param_set.param_0127(name, data_list, model_list, random_seed)
+param_set.param_0128(name, data_list, model_list, random_seed)
 result.average(model_list, name, data_list, random_seed)
-# ====================================================================S
+# ====================================================================

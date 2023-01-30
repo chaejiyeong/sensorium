@@ -1,0 +1,3 @@
+,score,activation,hidden_layer_sizes,max_iter,solver
+0,0.6546405630835332,logistic,"(100, 25)",500,adam
+1,0.6584339448289432,logistic,"(150, 35)",500,adam

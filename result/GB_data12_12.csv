@@ -1,0 +1,17 @@
+,score,criterion,learning_rate,loss,max_depth,max_features,n_estimators,subsample
+0,0.6154788089302312,friedman_mse,0.1,deviance,3,auto,100,0.8
+1,0.6163852820569875,friedman_mse,0.1,deviance,3,auto,100,1.0
+2,0.6194897287240615,friedman_mse,0.1,deviance,3,auto,200,0.8
+3,0.6134263483822215,friedman_mse,0.1,deviance,3,auto,200,1.0
+4,0.6174492620625376,friedman_mse,0.1,deviance,6,auto,100,0.8
+5,0.61631421935721,friedman_mse,0.1,deviance,6,auto,100,1.0
+6,0.6181732063426238,friedman_mse,0.1,deviance,6,auto,200,0.8
+7,0.6164304828782583,friedman_mse,0.1,deviance,6,auto,200,1.0
+8,0.6169978796054967,squared_error,0.1,deviance,3,auto,100,0.8
+9,0.6151330441802695,squared_error,0.1,deviance,3,auto,100,1.0
+10,0.6125506058239939,squared_error,0.1,deviance,3,auto,200,0.8
+11,0.6159309822497542,squared_error,0.1,deviance,3,auto,200,1.0
+12,0.6176942934545185,squared_error,0.1,deviance,6,auto,100,0.8
+13,0.6176782870077246,squared_error,0.1,deviance,6,auto,100,1.0
+14,0.6153431879794822,squared_error,0.1,deviance,6,auto,200,0.8
+15,0.6128555062887835,squared_error,0.1,deviance,6,auto,200,1.0

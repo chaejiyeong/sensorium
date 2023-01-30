@@ -80,35 +80,35 @@ class train():
             model = SVC()
             
         start = time.time()
-        # try:
-        # n_jobs = -1 : means using all processors
-        gsmodel = GridSearchCV(model, param_grid = parameter, cv = 3,
-                        scoring="f1_macro", verbose=0, refit = True, n_jobs = -1)
-        gsmodel.fit(x_train, y_train.ravel())
-        
-        if averaging == 1:
-            value = {'random state': rand_seed,
-                        'parameters': gsmodel.best_params_,
-                        'scores': gsmodel.best_score_}
-            self.result = self.result.append(value, ignore_index=True)
-        
-        else:
-            scores = pd.DataFrame(gsmodel.cv_results_)
-            score_name = 'log/' + model_name + '_' + name + '.csv' 
-            scores.to_csv(score_name)
+        try:
+            # n_jobs = -1 : means using all processors
+            gsmodel = GridSearchCV(model, param_grid = parameter, cv = 3,
+                            scoring="f1_macro", verbose=0, refit = True, n_jobs = -1)
+            gsmodel.fit(x_train, y_train.ravel())
             
-        # Printing
-        print("================================================")
-        print("Time: ", round((time.time() - start) / 60, 3))
-        print("Parameters: ", gsmodel.best_params_)
-        print("Estimation Score: ", gsmodel.best_score_)
-        
-        y_hat = gsmodel.predict(x_test)
-        matrix = metrics.confusion_matrix(y_test, y_hat)
-        print("Confusion Matrix:")
-        print(matrix)
-        print()
-        print("================================================")
+            if averaging == 1:
+                value = {'random state': rand_seed,
+                            'parameters': gsmodel.best_params_,
+                            'scores': gsmodel.best_score_}
+                self.result = self.result.append(value, ignore_index=True)
             
-        # except:
-        # print("Something Wrong!")
+            else:
+                scores = pd.DataFrame(gsmodel.cv_results_)
+                score_name = 'log/' + model_name + '_' + name + '.csv' 
+                scores.to_csv(score_name)
+                
+            # Printing
+            print("================================================")
+            print("Time: ", round((time.time() - start) / 60, 3))
+            print("Parameters: ", gsmodel.best_params_)
+            print("Estimation Score: ", gsmodel.best_score_)
+            
+            y_hat = gsmodel.predict(x_test)
+            matrix = metrics.confusion_matrix(y_test, y_hat)
+            print("Confusion Matrix:")
+            print(matrix)
+            print()
+            print("================================================")
+            
+        except:
+            print("Something Wrong!")
