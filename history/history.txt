@@ -1,0 +1,522 @@
+def pre_process_00(name):
+    data = open('data/raw_data.csv')
+    data = csv.reader(data)
+    header = next(data)
+    
+    freq_data = np.array([])
+    target_data = np.array([])
+    
+    for row in data:
+        if len(freq_data) == 0:
+            freq_data = np.append(freq_data, np.array(row[6:]), axis=0)
+        else:
+            freq_data = np.vstack([freq_data, np.array(row[6:])])
+        if (row[4] == '0' or row[4] == '1'):
+            target_data = np.append(target_data, np.array(0))
+        if (row[4] == '2' or row[4] == '3' or row[4] == '4'):
+            target_data = np.append(target_data, np.array(1))
+        
+    x_data = freq_data
+    x_data = np.array(x_data, int)
+    
+    x_df = pd.DataFrame(x_data)
+    x_name = 'data/x_data_' + name + '.csv' 
+    x_df.to_csv(x_name, index=False)
+    
+    target_data = np.array(target_data, int)
+    y_df = pd.DataFrame(target_data)
+    y_name = 'data/y_data_' + name + '.csv' 
+    y_df.to_csv(y_name, index=False)
+    
+def pre_process_01(name):
+    data = open('data/raw_data.csv')
+    data = csv.reader(data)
+    header = next(data)
+    
+    freq_data = np.array([])
+    pipe_data = np.array([])
+    target_data = np.array([])
+    
+    for row in data:
+        if len(freq_data) == 0:
+            freq_data = np.append(freq_data, np.array(row[6:]), axis=0)
+            pipe_data = np.append(
+                pipe_data, np.array(row[1:4]), axis=0)
+        else:
+            freq_data = np.vstack([freq_data, np.array(row[6:])])
+            pipe_data = np.vstack([pipe_data, np.array(row[1:4])])
+        if (row[4] == '0' or row[4] == '1'):
+            target_data = np.append(target_data, np.array(0))
+        if (row[4] == '2' or row[4] == '3' or row[4] == '4'):
+            target_data = np.append(target_data, np.array(1))
+        
+    x_data = np.concatenate([pipe_data, freq_data], axis=1)
+    x_data = np.array(x_data, int)
+    
+    x_df = pd.DataFrame(x_data)
+    x_name = 'data/x_data_' + name + '.csv' 
+    x_df.to_csv(x_name, index=False)
+    
+    target_data = np.array(target_data, int)
+    y_df = pd.DataFrame(target_data)
+    y_name = 'data/y_data_' + name + '.csv' 
+    y_df.to_csv(y_name, index=False)
+
+def pre_process_02(name):
+    data = open('data/raw_data.csv')
+    data = csv.reader(data)
+    header = next(data)
+    
+    freq_data = np.array([])
+    pipe_data = np.array([])
+    target_data = np.array([])
+    
+    for row in data:
+        arr = []
+        # pipe data: augmentation
+        for i in np.array(row[1:4]):
+                arr.extend([i for j in range(10)])
+        if len(freq_data) == 0:
+            freq_data = np.append(freq_data, np.array(row[6:]), axis=0)
+            pipe_data = np.append(
+                pipe_data, np.array(np.array(arr)), axis=0)
+        else:
+            freq_data = np.vstack([freq_data, np.array(row[6:])])
+            pipe_data = np.vstack([pipe_data, np.array(arr)])
+        if (row[4] == '0' or row[4] == '1'):
+            target_data = np.append(target_data, np.array(0))
+        if (row[4] == '2' or row[4] == '3' or row[4] == '4'):
+            target_data = np.append(target_data, np.array(1))
+        
+    x_data = np.concatenate([pipe_data, freq_data], axis=1)
+    x_data = np.array(x_data, int)
+    
+    x_df = pd.DataFrame(x_data)
+    x_name = 'data/x_data_' + name + '.csv' 
+    x_df.to_csv(x_name, index=False)
+    
+    target_data = np.array(target_data, int)
+    y_df = pd.DataFrame(target_data)
+    y_name = 'data/y_data_' + name + '.csv' 
+    y_df.to_csv(y_name, index=False)
+
+def pre_process_03(name):
+    data = open('data/raw_data.csv')
+    data = csv.reader(data)
+    header = next(data)
+    
+    freq_data = np.array([])
+    pipe_data = np.array([])
+    target_data = np.array([])
+    
+    for row in data:
+        if row[1] == '-1':
+            continue
+        
+        arr = []
+        # pipe data: augmentation
+        for i in np.array(row[1:4]):
+                arr.extend([i for j in range(10)])
+        if len(freq_data) == 0:
+            freq_data = np.append(freq_data, np.array(row[6:]), axis=0)
+            pipe_data = np.append(
+                pipe_data, np.array(np.array(arr)), axis=0)
+        else:
+            freq_data = np.vstack([freq_data, np.array(row[6:])])
+            pipe_data = np.vstack([pipe_data, np.array(arr)])
+        if (row[4] == '0' or row[4] == '1'):
+            target_data = np.append(target_data, np.array(0))
+        if (row[4] == '2' or row[4] == '3' or row[4] == '4'):
+            target_data = np.append(target_data, np.array(1))
+        
+    x_data = np.concatenate([pipe_data, freq_data], axis=1)
+    x_data = np.array(x_data, int)
+    
+    x_df = pd.DataFrame(x_data)
+    x_name = 'data/x_data_' + name + '.csv' 
+    x_df.to_csv(x_name, index=False)
+    
+    target_data = np.array(target_data, int)
+    y_df = pd.DataFrame(target_data)
+    y_name = 'data/y_data_' + name + '.csv' 
+    y_df.to_csv(y_name, index=False)
+
+def pre_process_04(name):
+    data = open('data/raw_data.csv')
+    data = csv.reader(data)
+    header = next(data)
+    
+    freq_data = np.array([])
+    pipe_data = np.array([])
+    target_data = np.array([])
+    
+    onehot_encoder = OneHotEncoder(sparse = False)
+    scaler = StandardScaler()
+    
+    for row in data:
+        
+        # Remove -1
+        if row[1] == '-1':
+            continue
+        
+        arr = []
+        # pipe data: augmentation
+        # for i in np.array(row[1:4]):
+        #         arr.extend([i for j in range(10)])
+        if len(freq_data) == 0:
+            freq_data = np.append(freq_data, np.array(row[6:]), axis=0)
+            pipe_data = np.append(
+                pipe_data, np.array(np.array(row[1:4])), axis=0)
+        else:
+            freq_data = np.vstack([freq_data, np.array(row[6:])])
+            pipe_data = np.vstack([pipe_data, np.array(row[1:4])])
+        if (row[4] == '0' or row[4] == '1'):
+            target_data = np.append(target_data, np.array(0))
+        if (row[4] == '2' or row[4] == '3' or row[4] == '4'):
+            target_data = np.append(target_data, np.array(1))
+    pipe_data = np.array(pipe_data, int)
+    pipe_data_one_hot = onehot_encoder.fit_transform(pipe_data)
+    pipe_data_one_hot = np.array(pipe_data_one_hot, float)
+    pipe_data_one_hot = pipe_data_one_hot * 100
+    
+    freq_data = np.array(freq_data, int)
+    freq_data =scaler.fit_transform(freq_data)
+    
+    x_data = np.concatenate([pipe_data_one_hot, freq_data], axis=1)
+    x_data = np.array(x_data, float)
+    # x_data = np.array(x_data, int)
+    
+    x_df = pd.DataFrame(x_data)
+    x_name = 'data/x_data_' + name + '.csv' 
+    x_df.to_csv(x_name, index=False)
+    
+    target_data = np.array(target_data, int)
+    y_df = pd.DataFrame(target_data)
+    y_name = 'data/y_data_' + name + '.csv' 
+    y_df.to_csv(y_name, index=False)
+    
+def pre_process_05(name):
+    data = open('data/raw_data.csv')
+    data = csv.reader(data)
+    header = next(data)
+    
+    freq_data = np.array([])
+    pipe_data = np.array([])
+    target_data = np.array([])
+    
+    onehot_encoder = OneHotEncoder(sparse = False)
+    scaler = MinMaxScaler()
+    
+    for row in data:
+
+        # Remove -1
+        if row[1] == '-1' or row[1] == '0':
+            continue
+        
+        arr = []
+        # pipe data: augmentation
+        # for i in np.array(row[1:4]):
+        #         arr.extend([i for j in range(10)])
+        pipes = row[2:4]
+        if len(freq_data) == 0:
+            freq_data = np.append(freq_data, np.array(row[6:]), axis=0)
+            pipe_data = np.append(
+                pipe_data, np.array(np.array(pipes)), axis=0)
+        else:
+            freq_data = np.vstack([freq_data, np.array(row[6:])])
+            pipe_data = np.vstack([pipe_data, np.array(pipes)])
+        if (row[4] == '0' or row[4] == '1'):
+            target_data = np.append(target_data, np.array(0))
+        if (row[4] == '2' or row[4] == '3' or row[4] == '4'):
+            target_data = np.append(target_data, np.array(1))
+    pipe_data = np.array(pipe_data, int)
+    pipe_data_one_hot = onehot_encoder.fit_transform(pipe_data)
+    pipe_data_one_hot = np.array(pipe_data_one_hot, float)
+    pipe_data_one_hot = pipe_data_one_hot * 100
+    
+    freq_data = np.array(freq_data, int)
+    freq_data =scaler.fit_transform(freq_data)
+    
+    x_data = np.concatenate([pipe_data_one_hot, freq_data], axis=1)
+    x_data = np.array(x_data, float)
+    # x_data = np.array(x_data, int)
+    
+    x_df = pd.DataFrame(x_data)
+    x_name = 'data/x_data_' + name + '.csv' 
+    x_df.to_csv(x_name, index=False)
+    
+    target_data = np.array(target_data, int)
+    y_df = pd.DataFrame(target_data)
+    y_name = 'data/y_data_' + name + '.csv' 
+    y_df.to_csv(y_name, index=False)
+
+def param_0122():
+    data_list = ["00", "01"]
+    model_list = ["KNN", "MLP", "DNN", "GB", "LR", "RF", "SVM"]
+    # model_list = ["GB"]
+    
+    for data in data_list:
+        trainer = train.train(data)
+        for model in model_list:
+            for seed in range(2):
+                if model == "KNN":
+                    params = {
+                    'n_neighbors': [5, 10, 20, 40],
+                    'weights': ['uniform', 'distance'],
+                    'algorithm' : ['auto', 'ball_tree', 'kd_tree'],
+                    'leaf_size' : [30, 60, 120],
+                    'p' : [1, 2],
+                    }
+                if model == "MLP":
+                    params = {
+                    'hidden_layer_sizes': [(50,), (100,), (200,), (400)],
+                    'activation': ['tanh', 'relu', 'logistic', 'identity'],
+                    'solver': ['adam', 'bfgs', 'sgd'],
+                    'alpha': [0.001, 0.01, 0.1],
+                    'learning_rate': ['constant', 'invscaling', 'adaptive'],
+                    'learning_rate_init': [0.0001, 0.001, 0.01],
+                    'max_iter' : [300, 400],
+                    }
+                if model == "DNN":
+                    params = {
+                    'hidden_layer_sizes': [(50, 10), (100, 25), (200,50), (400, 100)],
+                    'activation': ['tanh', 'relu', 'logistic', 'identity'],
+                    'solver': ['adam', 'bfgs', 'sgd'],
+                    'alpha': [0.001, 0.01, 0.1],
+                    'learning_rate': ['constant', 'invscaling', 'adaptive'],
+                    'learning_rate_init': [0.0001, 0.001, 0.01],
+                    'max_iter' : [300, 400],
+                    }
+                if model == "GB":
+                    params = {
+                    'loss': ['log_loss', 'deviance', 'exponential'],
+                    'learning_rate': [0.1, 0.01],
+                    'n_estimators': [50, 100, 200],
+                    'subsample': [0.2, 0.4, 0.8, 1.0],
+                    'criterion': ['friedman_mse', 'squared_error'], 
+                    'max_depth' : [3, 6, 12, 24],
+                    'max_features' : ['auto', 'sqrt', 'log2'],
+                    }
+                if model == "LR":
+                    params = {
+                    'penalty': ['l1', 'l2', 'elasticnet'],
+                    'C': [1.0, 0.5, 0.2], 
+                    'solver': ['lbfgs', 'liblinear', 'newton-cg', 'newton-cholesky', 'sag', 'saga'],
+                    'max_iter': [100, 200, 400],
+                    'multi_class': ['auto', 'ovr', 'multinomial'] ,
+                    }
+                if model == "RF":
+                    params = {
+                    'n_estimators': [10, 50, 100],
+                    'criterion': ['gini', 'entropy', 'log_loss'],
+                    'max_features': ['sqrt', 'log2', None],
+                    'bootstrap': [True, False],
+                    }
+                if model == "SVM":
+                    params = {
+                    'C': [1.0, 0.5, 0.2], 
+                    'kernel': ['linear', 'poly', 'rbf', 'sigmoid', 'precomputed'],
+                    'gamma': ['scale', 'auto'],
+                    'shrinking' : [False, True],
+                    }
+                
+                trainer.search_parameter(model, seed, params, "_0122_" + str(data) + "_" + str(seed))              
+
+def param_0124(name):
+    data_list = ["01"]
+    model_list = ["KNN", "MLP", "DNN", "GB", "LR", "RF"]
+    # model_list = ["SVM"]
+    
+    for data in data_list:
+        trainer = train.train(data)
+        for model in model_list:
+            for seed in range(50):
+                if model == "KNN":
+                    params = {
+                    'n_neighbors': [8, 9, 10],
+                    'weights': ['distance'],
+                    'algorithm' : ['ball_tree', 'kd_tree'],
+                    'p' : [1],
+                    }
+                if model == "MLP":
+                    params = {
+                    'hidden_layer_sizes': [(100,), (150,), (200,)],
+                    'activation': ['logistic', 'relu', 'identity'],
+                    'solver': ['adam'],
+                    'max_iter' : [400, 500],
+                    }
+                if model == "DNN":
+                    params = {
+                    'hidden_layer_sizes': [(100, 25), (150, 35), (200,50)],
+                    'activation': ['logistic'],
+                    'solver': ['adam'],
+                    'learning_rate_init': [0.0001, 0.001],
+                    'max_iter' : [400, 500],
+                    }
+                if model == "GB":
+                    params = {
+                    'loss': ['deviance', 'exponential'],
+                    'learning_rate': [0.1, 0.01],
+                    'n_estimators': [50, 100, 200],
+                    'subsample': [0.2, 0.4, 0.8, 1.0],
+                    'criterion': ['friedman_mse', 'squared_error'], 
+                    'max_depth' : [3, 6, 12, 24],
+                    'max_features' : ['auto', 'sqrt', 'log2'],
+                    }
+                if model == "LR":
+                    params = {
+                    'penalty': ['l1', 'l2', 'elasticnet'],
+                    'C': [1.0, 0.5, 0.2], 
+                    'solver': ['lbfgs', 'liblinear', 'newton-cg', 'newton-cholesky', 'sag', 'saga'],
+                    'max_iter': [100, 200, 400],
+                    'multi_class': ['auto', 'ovr', 'multinomial'] ,
+                    }
+                if model == "RF":
+                    params = {
+                    'n_estimators': [10, 50, 100],
+                    'criterion': ['gini', 'entropy', 'log_loss'],
+                    'max_features': ['sqrt', 'log2', None],
+                    'bootstrap': [True, False],
+                    }
+                if model == "SVM":
+                    params = {
+                    'C': [1.0, 0.5, 0.2], 
+                    'kernel': ['poly', 'rbf', 'sigmoid'],
+                    'gamma': ['scale', 'auto'],
+                    'shrinking' : [False, True],
+                    }
+                
+                trainer.search_parameter(model, seed, params, name + "_" + str(data) + "_" + str(seed), 0)
+            trainer.save_result(model, name, data)
+
+def param_0126(name):
+    data_list = ["02"]
+    model_list = ["KNN", "MLP", "DNN", "GB", "LR", "RF", "SVM"]
+    # model_list = ["SVM"]
+    
+    for data in data_list:
+        trainer = train.train(data)
+        for model in model_list:
+            for seed in range(10):
+                if model == "KNN":
+                    params = {
+                    'n_neighbors': [8, 9, 10],
+                    'weights': ['distance'],
+                    'algorithm' : ['ball_tree', 'kd_tree'],
+                    'p' : [1],
+                    }
+                if model == "MLP":
+                    params = {
+                    'hidden_layer_sizes': [(100,), (150,), (200,)],
+                    'activation': ['logistic', 'relu', 'identity'],
+                    'solver': ['adam'],
+                    'max_iter' : [400, 500],
+                    }
+                if model == "DNN":
+                    params = {
+                    'hidden_layer_sizes': [(100, 25), (150, 35), (200,50)],
+                    'activation': ['logistic'],
+                    'solver': ['adam'],
+                    'learning_rate_init': [0.0001, 0.001],
+                    'max_iter' : [400, 500],
+                    }
+                if model == "GB":
+                    params = {
+                    'loss': ['deviance'],
+                    'learning_rate': [0.1],
+                    'n_estimators': [200],
+                    'subsample': [0.8],
+                    'criterion': ['friedman_mse', 'squared_error'], 
+                    'max_depth' : [3, 6],
+                    'max_features' : ['auto'],
+                    }
+                if model == "LR":
+                    params = {
+                    'penalty': ['l2'],
+                    'C': [1.0, 0.5, 0.2], 
+                    'solver': ['lbfgs', 'saga'],
+                    'max_iter': [100, 200],
+                    'multi_class': ['auto'] ,
+                    }
+                if model == "RF":
+                    params = {
+                    'n_estimators': [50, 100],
+                    'criterion': ['gini'],
+                    'max_features': [None],
+                    'bootstrap': [True],
+                    }
+                if model == "SVM":
+                    params = {
+                    'C': [1.0, 0.5, 0.2], 
+                    'kernel': ['poly', 'rbf', 'sigmoid'],
+                    'gamma': ['scale', 'auto'],
+                    'shrinking' : [False, True],
+                    }
+                
+                trainer.search_parameter(model, seed, params, name + "_" + str(data) + "_" + str(seed), 0)
+            trainer.save_result(model, name, data)
+
+def param_0127(name, data_lst, model_lst, rand_seed):
+    data_list = data_lst
+    model_list = model_lst
+    
+    for data in data_list:
+        trainer = train.train(data)
+        for model in model_list:
+            for seed in range(rand_seed):
+                if model == "KNN":
+                    params = {
+                    'n_neighbors': [8, 9, 10],
+                    'weights': ['distance'],
+                    'algorithm' : ['ball_tree', 'kd_tree'],
+                    'p' : [1],
+                    }
+                if model == "MLP":
+                    params = {
+                    'hidden_layer_sizes': [(100,)],
+                    'activation': ['logistic'],
+                    'solver': ['adam'],
+                    'max_iter' : [500],
+                    }
+                if model == "DNN":
+                    params = {
+                    'hidden_layer_sizes': [(100, 25), (150, 35)],
+                    'activation': ['logistic'],
+                    'solver': ['adam'],
+                    'max_iter' : [500],
+                    }
+                if model == "GB":
+                    params = {
+                    'loss': ['deviance'],
+                    'learning_rate': [0.1],
+                    'n_estimators': [100, 200],
+                    'subsample': [0.8, 1],
+                    'criterion': ['friedman_mse', 'squared_error'], 
+                    'max_depth' : [3, 6],
+                    'max_features' : ['auto'],
+                    }
+                if model == "LR":
+                    params = {
+                    'penalty': ['l2', 'l1'],
+                    'C': [0.2], 
+                    'solver': ['lbfgs', 'liblinear'],
+                    'max_iter': [100, 200],
+                    'multi_class': ['auto'] ,
+                    }
+                if model == "RF":
+                    params = {
+                    'n_estimators': [100],
+                    'criterion': ['gini', 'entropy'],
+                    'max_features': [None],
+                    'bootstrap': [True],
+                    }
+                if model == "SVM":
+                    params = {
+                    'C': [1.0], 
+                    'kernel': ['poly'],
+                    'gamma': ['auto'],
+                    'shrinking' : [False],
+                    }
+                
+                trainer.search_parameter(model, seed, params, name[0] + "_" + str(data) + "_" + str(seed), 0)
+            trainer.save_result(model, name[0], data)

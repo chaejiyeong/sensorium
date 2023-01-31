@@ -1,7 +1,0 @@
-,score,C,max_iter,multi_class,penalty,solver
-0,0.6746828851042416,0.2,100,auto,l2,lbfgs
-1,0.6658629018717062,0.2,100,auto,l2,liblinear
-2,0.6834310724750428,0.2,100,auto,l1,liblinear
-3,0.6698370158329302,0.2,200,auto,l2,lbfgs
-4,0.6658629018717062,0.2,200,auto,l2,liblinear
-5,0.6833830522741248,0.2,200,auto,l1,liblinear

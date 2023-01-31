@@ -1,0 +1,5 @@
+,score,criterion,learning_rate,loss,max_depth,max_features,n_estimators,subsample
+0,0.6641037384854548,friedman_mse,0.1,deviance,3,auto,200,0.8
+1,0.6579431670131448,friedman_mse,0.1,deviance,6,auto,200,0.8
+2,0.6570367651665098,squared_error,0.1,deviance,3,auto,200,0.8
+3,0.6559557593708365,squared_error,0.1,deviance,6,auto,200,0.8

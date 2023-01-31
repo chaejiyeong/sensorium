@@ -1,0 +1,7 @@
+,score,algorithm,n_neighbors,p,weights
+0,0.6340691094076131,ball_tree,8,1,distance
+1,0.6329542014555549,ball_tree,9,1,distance
+2,0.6317133381774014,ball_tree,10,1,distance
+3,0.6340691094076131,kd_tree,8,1,distance
+4,0.6329542014555549,kd_tree,9,1,distance
+5,0.6317133381774014,kd_tree,10,1,distance
