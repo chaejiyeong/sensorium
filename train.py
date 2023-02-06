@@ -3,6 +3,7 @@
 from sklearn.model_selection import train_test_split
 # Machine Learning Methods
 from sklearn.model_selection import GridSearchCV, KFold
+from sklearn.metrics import precision_score, recall_score, f1_score
 from sklearn import metrics
 # MLP
 from sklearn.neural_network import MLPClassifier
@@ -46,7 +47,7 @@ class train():
             self.result.to_csv(result_name)
     
     # Find parameter
-    def search_parameter(self, model_name, rand_seed, parameter, folder_name, file_name, averaging = 0):
+    def grid_search_CV(self, model_name, rand_seed, parameter, folder_name, file_name, averaging = 0):
         # Split data
         x_train, x_test, y_train, y_test = train_test_split(self.x_data, self.y_data, 
             stratify = self.y_data, test_size = 0.2, random_state = rand_seed)
@@ -107,6 +108,67 @@ class train():
         matrix = metrics.confusion_matrix(y_test, y_hat)
         print("Confusion Matrix:")
         print(matrix)
+        print()
+        print("================================================")
+            
+        # except:
+            # print("Something Wrong!")
+            
+    # Find parameter
+    def grid_search_CV_aug(self, model_name, rand_seed, parameter, folder_name, file_name, x_train, x_test, y_train, y_test):
+    
+        # K-Nearst Neighborhood
+        if model_name == "KNN":
+            model = KNeighborsClassifier()
+        
+        # Multi-Layer Perceptron
+        if model_name == "MLP":
+            model = MLPClassifier()
+            
+        # Deep-Neural Network
+        if model_name == "DNN":
+            model = MLPClassifier()
+            
+        # Gradient Boosting
+        if model_name == "GB":
+            model = GradientBoostingClassifier()
+            
+        # Logistic Regression
+        if model_name == "LR":
+            model = LogisticRegression()
+            
+        # Random Forest
+        if model_name == "RF":
+            model = RandomForestClassifier()
+            
+        # Support Vector Machine
+        if model_name == "SVM":
+            model = SVC()
+            
+        start = time.time()
+        # try:
+        # n_jobs = -1 : means using all processors
+        gsmodel = GridSearchCV(model, param_grid = parameter, cv = 3,
+                        scoring="f1_macro", verbose=0, refit = True, n_jobs = -1)
+        gsmodel.fit(x_train, y_train.ravel())
+        
+        scores = pd.DataFrame(gsmodel.cv_results_)
+        score_name = 'log/' + folder_name + '/' + model_name + '_' + file_name + '.csv' 
+        scores.to_csv(score_name)
+            
+        # Printing
+        print("================================================")
+        print("Time: ", round((time.time() - start) / 60, 3))
+        print("Parameters: ", gsmodel.best_params_)
+        print("Estimation Score: ", gsmodel.best_score_)
+        
+        y_hat = gsmodel.predict(x_test)
+        matrix = metrics.confusion_matrix(y_test, y_hat)
+        print("Confusion Matrix:")
+        print(matrix)
+        print("Precision: ", precision_score(y_test, y_hat))
+        print("Recall_score: ", recall_score(y_test, y_hat))
+        print("F1_score: ", f1_score(y_test, y_hat))
         print()
         print("================================================")
             

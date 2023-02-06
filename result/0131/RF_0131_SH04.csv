@@ -1,0 +1,3 @@
+,score,bootstrap,criterion,max_features,n_estimators,highest_score
+0,0.5313854623196796,True,gini,,50,0.5749244189976155
+1,0.5267795745432811,True,gini,,100,0.5562087904138814
